@@ -1,0 +1,31 @@
+.navBarWrapper {
+  grid-area: navbar;
+  background-color: hotpink;
+}
+
+.navbar {
+
+}
+
+
+.item {
+  color: black;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.item__link {
+  color: inherit;
+  font-family: inherit;
+  text-decoration: none;
+  display: block;
+  padding: 5px;
+}
+
+.item__link:hover {
+  color: gray;
+}
+
+.item__link.active {
+  color: gold;
+}

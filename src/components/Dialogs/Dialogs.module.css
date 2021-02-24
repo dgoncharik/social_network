@@ -1,0 +1,19 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: minmax(100px, 300px) 1fr;
+}
+
+.dialogs__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.dialogs__list > li {
+
+}
+
+.messages {
+    padding-top: 10px;
+
+}

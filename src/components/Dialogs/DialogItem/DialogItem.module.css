@@ -1,0 +1,55 @@
+.dialogItem {
+
+}
+
+.dialogItem__link {
+    display: block;
+    padding: 5px;
+    text-decoration: none;
+    color:black;
+    border-radius: 15px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    position: relative;
+}
+
+.dialogItem__link.active {
+    color: inherit;
+    text-shadow: 0 0 0.45px #000, 0 0 .45px #000;
+}
+
+.dialogItem__link.active::before {
+    content: "";
+    display: block;
+    position: absolute;
+    height: 100%;
+    width: 2px;
+    left: 0;
+    z-index: 1;
+    background-color: black;
+}
+
+.dialogItem__link:hover {
+    background-color: rgba(0,0,0, 0.1);
+}
+
+.avatarWrapper {
+    min-width: 70px;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.dialogItem__avatar {
+    max-width: 100%;
+    /*object-fit: cover*/
+}
+
+.dialogItem__name {
+    width: 200px;
+    word-wrap: break-word;
+    margin-left: 10px;
+}
+

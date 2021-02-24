@@ -1,0 +1,41 @@
+.friend {
+
+}
+
+.friend__link {
+    display: block;
+    width: 70px;
+    padding: 5px;
+    text-decoration: none;
+    color: white;
+    border-radius: 7px;
+    transition: box-shadow .3s;
+}
+
+.friend__link:hover {
+    box-shadow: 0 0 10px rgba(0,0,0,0.5)
+}
+
+.friend__link:active {
+    box-shadow: 0 0 30px 0 rgba(0,0,0,0.5)
+}
+
+.friend__avatarWrapper {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto;
+    border-radius: 50%;
+    display: block;
+    overflow: hidden;
+}
+
+.friend__avatar {
+    max-width: 100%;
+}
+
+.friend__name {
+    width: 100%;
+    margin-top: 3px;
+    display: block;
+    text-align: center;
+}
