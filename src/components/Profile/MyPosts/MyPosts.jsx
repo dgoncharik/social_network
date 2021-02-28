@@ -1,7 +1,7 @@
 import css from './MyPosts.module.css';
 import Post from './Post/Post';
 import React from 'react'
-import {addNewPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/state";
+import {addNewPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/profile-reducer";
 
 const MyPosts = (props) => {
 
@@ -9,16 +9,17 @@ const MyPosts = (props) => {
     return <Post message={post.message} />
   })
 
-  let newPostElement = React.createRef();
+  // let newPostElement = React.createRef();
 
-  const updateNewPostText = () => {
-    const value = newPostElement.current.value;
+  const updateNewPostText = (evt) => {
+    // const value = newPostElement.current.value;
+    const value = evt.target.value;
     const action = updateNewPostTextActionCreator(value);
 
     props.dispatch(action);
   }
 
-  const addNewPost = () => {
+  const addNewPost = (evt) => {
     const action = addNewPostActionCreator();
 
     props.dispatch(action)
@@ -28,7 +29,7 @@ const MyPosts = (props) => {
     <div className={css.myPost}>
       <h3>My post</h3>
       <div className={css.newPost}>
-        <textarea onChange={updateNewPostText} ref={newPostElement} className={css.newPost__text} value={props.newPostText} cols="30" rows="10"/>
+        <textarea onChange={updateNewPostText} /*ref={newPostElement}*/ className={css.newPost__text} value={props.newPostText} cols="30" rows="10"/>
         <button onClick={addNewPost} className={css.newPost__btnAdd}>Добавить пост</button>
       </div>
       <div className={css.posts}>
