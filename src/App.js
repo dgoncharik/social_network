@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import {BrowserRouter, Route} from "react-router-dom";
+import {Route} from "react-router-dom";
 import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
 import Profile from './components/Profile/Profile';
@@ -19,8 +19,8 @@ const App = (props) => {
 
         <div className="app-wrapper-content">
 
-          <Route path="/Dialogs"  render={ () => <Dialogs state={props.state.dialogsPage} updateNewMessage={props.updateNewMessage} sendMessage={props.sendMessage} /> } />
-          <Route path="/Profile"  render={ () => <Profile state={props.state.profilePage} updateNewPostText={props.updateNewPostText} addNewPost={props.addNewPost}  /> } />
+          <Route path="/Dialogs"  render={ () => <Dialogs state={props.state.dialogsPage} dispatch={props.dispatch} /> } />
+          <Route path="/Profile"  render={ () => <Profile state={props.state.profilePage} dispatch={props.dispatch}  /> } />
           <Route path="/News"     render={ () => <News />     } />
           <Route path="/Music"    render={ () => <Music />    } />
           <Route path="/Settings" render={ () => <Settings /> } />

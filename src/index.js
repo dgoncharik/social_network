@@ -13,10 +13,7 @@ const rerenderEntireThree = (state) => {
         <BrowserRouter>
           <App
               state={state}
-              updateNewPostText={store.updateNewPostText.bind(store)}
-              addNewPost={store.addNewPost.bind(store)}
-              updateNewMessage = {store.updateNewMessage.bind(store)}
-              sendMessage = {store.sendMessage.bind(store)}
+              dispatch={store.dispatch.bind(store)}
           />
         </BrowserRouter>
       </React.StrictMode>,
