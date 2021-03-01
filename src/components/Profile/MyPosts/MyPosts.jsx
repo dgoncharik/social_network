@@ -14,15 +14,11 @@ const MyPosts = (props) => {
   const updateNewPostText = (evt) => {
     // const value = newPostElement.current.value;
     const value = evt.target.value;
-    const action = updateNewPostTextActionCreator(value);
-
-    props.dispatch(action);
+    props.updateNewPostText(value);
   }
 
   const addNewPost = (evt) => {
-    const action = addNewPostActionCreator();
-
-    props.dispatch(action)
+    props.addNewPost()
   }
 
   return (

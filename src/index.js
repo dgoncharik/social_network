@@ -4,7 +4,7 @@ import {BrowserRouter} from "react-router-dom";
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import store from "./redux/state";
+import store from "./redux/redux-store";
 
 const rerenderEntireThree = (state) => {
 
@@ -12,8 +12,7 @@ const rerenderEntireThree = (state) => {
       <React.StrictMode>
         <BrowserRouter>
           <App
-              state={state}
-              dispatch={store.dispatch.bind(store)}
+              store={store}
           />
         </BrowserRouter>
       </React.StrictMode>,
@@ -21,9 +20,12 @@ const rerenderEntireThree = (state) => {
   );
 };
 
-store.subscribe(rerenderEntireThree)
 rerenderEntireThree(store.getState());
 
+store.subscribe(() => {
+  const state = (store.getState());
+  rerenderEntireThree(state);
+})
 
 
 
