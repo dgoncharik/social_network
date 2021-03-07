@@ -3,7 +3,7 @@ import {NavLink} from "react-router-dom";
 
 const Friend = (props) => {
   return (
-      <div className={css.friend}>
+      <li className={css.friend}>
 
         <NavLink to={'/friendId'} className={css.friend__link} activeClassName={css.active}>
           <span className={css.friend__avatarWrapper}>
@@ -13,7 +13,7 @@ const Friend = (props) => {
 
         </NavLink>
 
-      </div>
+      </li>
   )
 }
 

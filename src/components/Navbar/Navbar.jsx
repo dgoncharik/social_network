@@ -11,6 +11,9 @@ const Navbar = (props) => {
             <NavLink to="/Profile" activeClassName={css.active} className={css.item__link}>Профиль</NavLink>
           </div>
           <div className={css.item}>
+            <NavLink to="/FindUsers" activeClassName={css.active} className={css.item__link}>Пользователи</NavLink>
+          </div>
+          <div className={css.item}>
             <NavLink to="/Dialogs" activeClassName={css.active} className={css.item__link}>Мессенджер</NavLink>
           </div>
           <div className={css.item}>
@@ -24,7 +27,7 @@ const Navbar = (props) => {
           </div>
         </nav>
 
-        <Friends friends={props.state.friends}/>
+        <Friends friends={props.friends}/>
       </div>
   )
 }

@@ -1,0 +1,21 @@
+.pagination {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.pagination__item > button {
+    transition: transform .2s;
+}
+
+.pagination__item:hover > button {
+    transform: scale(1.2)
+}
+
+.pagination__itemActive > button {
+    font-weight: bold;
+    transform: scale(1.2);
+
+}

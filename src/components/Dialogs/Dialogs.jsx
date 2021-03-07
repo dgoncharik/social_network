@@ -5,12 +5,20 @@ import React from 'react';
 
 const Dialogs = (props) => {
 
-  let dialogsElements = props.state.dialogs.map(dialog => {
-      return <DialogItem state={dialog}/>
+  let dialogsElements = props.dialogs.map(dialog => {
+      return <DialogItem
+          key={dialog.id}
+          id={dialog.id}
+          pathAvatar={dialog.pathAvatar}
+          name={dialog.name}
+      />
     })
 
-  let messagesElements = props.state.messages.map(el => {
-    return <Message message={el.message} myMessage={el.myMessage}/>
+  let messagesElements = props.messages.map(el => {
+    return <Message
+        key={el.id}
+        message={el.message}
+        myMessage={el.myMessage}/>
   })
 
   // let sendMessageTextareaElements = React.createRef();
@@ -38,7 +46,7 @@ const Dialogs = (props) => {
         </section>
 
         <div className={css.sendMessage}>
-          <textarea onChange={updateNewMessageText} className={css.sendMessage__textarea} /*ref={sendMessageTextareaElements}*/ name="sendMessage__textarea" cols="30" rows="10" value={props.state.newMessageText} />
+          <textarea onChange={updateNewMessageText} className={css.sendMessage__textarea} /*ref={sendMessageTextareaElements}*/ name="sendMessage__textarea" cols="30" rows="10" value={props.newMessageText} />
           <button onClick={sendNewMessage} className={css.sendMessage__button}>Отправить</button>
         </div>
 

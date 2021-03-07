@@ -5,27 +5,39 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import store from "./redux/redux-store";
+import {Provider} from "react-redux";
 
-const rerenderEntireThree = (state) => {
 
-  ReactDOM.render(
-      <React.StrictMode>
-        <BrowserRouter>
-          <App
-              store={store}
-          />
-        </BrowserRouter>
-      </React.StrictMode>,
-      document.getElementById('root')
-  );
-};
 
-rerenderEntireThree(store.getState());
+// ReactDOM.render(
+//     <React.StrictMode>
+//       <BrowserRouter>
+//         <Provider store={store}>
+//           <App />
+//         </Provider>
+//       </BrowserRouter>
+//     </React.StrictMode>,
+//     document.getElementById('root')
+// );
 
-store.subscribe(() => {
-  const state = (store.getState());
-  rerenderEntireThree(state);
-})
+ReactDOM.render(
+    // <React.StrictMode>
+      <BrowserRouter>
+        <Provider store={store}>
+          <App />
+        </Provider>
+      </BrowserRouter>
+    // </React.StrictMode>
+    ,document.getElementById('root')
+);
+
+
+//rerenderEntireThree(store.getState());
+
+// store.subscribe(() => {
+//   const state = (store.getState());
+//   rerenderEntireThree(state);
+// })
 
 
 
