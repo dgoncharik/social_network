@@ -1,5 +1,7 @@
 import css from "./User.module.css"
 import defaultAvatar from "./img/default-avatar.png"
+import {NavLink} from "react-router-dom";
+import {setFollowingProcess} from "../../../redux/FindUsers-reducer";
 
 const User = (props) => {
 
@@ -14,9 +16,11 @@ const User = (props) => {
 
         <div>
           <div className={css.avatar__wrapper}>
-            <img className={css.avatar} src={avatarSmall}/>
+            <NavLink to={`/Profile/${props.id}`}>
+              <img className={css.avatar} src={avatarSmall}/>
+            </NavLink>
           </div>
-          <button onClick={onBtnSubscribeClick} className={css.btnSubscribe}>{props.followed ? "Отписаться" : "Подписаться"}</button>
+          <button disabled={props.followingProcess.some(id => id === props.id)} onClick={onBtnSubscribeClick} className={css.btnSubscribe}>{props.followed ? "Отписаться" : "Подписаться"}</button>
         </div>
 
         <div className={css.user__info}>

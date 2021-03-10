@@ -3,13 +3,15 @@ const SET_USERS             = "SET_USERS";
 const CHANGE_CURRENT_PAGE   = "CHANGE_CURRENT_PAGE";
 const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT";
 const TOOGLE_IS_FETCHING    = "TOOGLE_IS_FETCHING";
+const FOLLOWING_PROCESS     = "FOLLOWING_PROCESS";
 
 let initalState = {
   users: [],
   pageSize: 10,
   totalUsersCount: 0,
   currentPage: 1,
-  isFetching: false
+  isFetching: false,
+  followingProcess: []
 };
 
 const findUsersReducer = (state=initalState, action) => {
@@ -49,15 +51,24 @@ const findUsersReducer = (state=initalState, action) => {
         ...state,
         isFetching: action.isFetching
       }
+
+    case(FOLLOWING_PROCESS):
+      return {
+        ...state,
+        followingProcess: action.isProcess ?
+            [...state.followingProcess, action.userId] :
+            state.followingProcess.filter(userId => userId !== action.userId)
+      }
     default:
       return state;
   }
 };
 
-export const followUnfollowAC = (userId) => ({type: FOLLOW_UNFOLLOW, userId:userId});
-export const setUsersAC = (users) => ({type: SET_USERS, users});
-export const changeCurrentPageAC = (newCurrentPage) => ({type: CHANGE_CURRENT_PAGE, newCurrentPage});
-export const setTotalUsersCountAC = (totalUsersCount) => ({type: SET_TOTAL_USERS_COUNT, totalUsersCount});
+export const followUnfollow = (userId) => ({type: FOLLOW_UNFOLLOW, userId:userId});
+export const setUsers = (users) => ({type: SET_USERS, users});
+export const changeCurrentPage = (newCurrentPage) => ({type: CHANGE_CURRENT_PAGE, newCurrentPage});
+export const setTotalUsersCount = (totalUsersCount) => ({type: SET_TOTAL_USERS_COUNT, totalUsersCount});
 export const toogleIsFetching = (isFetching) => ({type: TOOGLE_IS_FETCHING, isFetching});
+export const setFollowingProcess = (isProcess, userId) => ({type: FOLLOWING_PROCESS, isProcess, userId});
 
 export default findUsersReducer;

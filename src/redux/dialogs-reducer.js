@@ -50,7 +50,7 @@ const dialogsReducer = (state=initialState, action) => {
   }
 }
 
-export const updateNewMessageTextActionCreator = (text) => ({type: UPDATE_NEW_MESSAGE_TEXT, newText:text})
-export const sendNewMessageActionCreator = () => ({type: SEND_NEW_MESSEGE})
+export const updateNewMessageText = (text) => ({type: UPDATE_NEW_MESSAGE_TEXT, newText:text})
+export const sendNewMessage = () => ({type: SEND_NEW_MESSEGE})
 
 export default dialogsReducer;
