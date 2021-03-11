@@ -1,13 +1,12 @@
 import React from 'react';
 import css from "./FindUsers.module.css"
 import Pagination from "./Pagination/Pagination";
-import UserContainer from "./User/UserContainer";
-import {setFollowingProcess} from "../../redux/FindUsers-reducer";
+import User from "./User/User";
 
 const FindUsers = (props) => {
     const usersElements = props.users.map((userData) => {
 
-      return <UserContainer
+      return <User
           className={css.findUsers__user}
           id={userData.id}
           key={userData.id}
@@ -26,9 +25,10 @@ const FindUsers = (props) => {
         <section className={css.findUsers}>
 
           <Pagination
-              onPaginationItemClick={props.onPaginationItemClick}
+              getUsers={props.getUsers}
               currentPage={props.currentPage}
               pagesCount={Math.ceil(props.totalUsersCount / props.pageSize)}
+              pageSize = {props.pageSize}
           />
 
           <ul className={css.findUsers__list}>

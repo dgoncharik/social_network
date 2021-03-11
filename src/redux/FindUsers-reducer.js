@@ -1,9 +1,11 @@
-const FOLLOW_UNFOLLOW       = "FOLLOW_UNFOLLOW";
-const SET_USERS             = "SET_USERS";
-const CHANGE_CURRENT_PAGE   = "CHANGE_CURRENT_PAGE";
-const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT";
-const TOOGLE_IS_FETCHING    = "TOOGLE_IS_FETCHING";
-const FOLLOWING_PROCESS     = "FOLLOWING_PROCESS";
+import {usersAPI} from "../api/api";
+
+const FOLLOW_UNFOLLOW_SUCCES  = "FOLLOW_UNFOLLOW_SUCCES";
+const SET_USERS               = "SET_USERS";
+const CHANGE_CURRENT_PAGE     = "CHANGE_CURRENT_PAGE";
+const SET_TOTAL_USERS_COUNT   = "SET_TOTAL_USERS_COUNT";
+const TOOGLE_IS_FETCHING      = "TOOGLE_IS_FETCHING";
+const FOLLOWING_PROCESS       = "FOLLOWING_PROCESS";
 
 let initalState = {
   users: [],
@@ -17,7 +19,7 @@ let initalState = {
 const findUsersReducer = (state=initalState, action) => {
 
   switch (action.type) {
-    case(FOLLOW_UNFOLLOW):
+    case(FOLLOW_UNFOLLOW_SUCCES):
 
       return {
         ...state,
@@ -64,11 +66,46 @@ const findUsersReducer = (state=initalState, action) => {
   }
 };
 
-export const followUnfollow = (userId) => ({type: FOLLOW_UNFOLLOW, userId:userId});
+// action creators
+export const followUnfollowSucces = (userId) => ({type: FOLLOW_UNFOLLOW_SUCCES, userId:userId});
 export const setUsers = (users) => ({type: SET_USERS, users});
 export const changeCurrentPage = (newCurrentPage) => ({type: CHANGE_CURRENT_PAGE, newCurrentPage});
 export const setTotalUsersCount = (totalUsersCount) => ({type: SET_TOTAL_USERS_COUNT, totalUsersCount});
 export const toogleIsFetching = (isFetching) => ({type: TOOGLE_IS_FETCHING, isFetching});
 export const setFollowingProcess = (isProcess, userId) => ({type: FOLLOWING_PROCESS, isProcess, userId});
+
+// thunk creators
+export const getUsers = (currentPage, pageSize) => {
+  return (dispatch) => {
+    dispatch(toogleIsFetching(true));
+    usersAPI.getUsers(currentPage, pageSize).then((response) => {
+      dispatch(setUsers(response.items));
+      dispatch(setTotalUsersCount(response.totalCount));
+      dispatch(toogleIsFetching(false));
+    });
+  }
+}
+
+export const followUnfollow = (userId, followed) => {
+
+  return (dispatch) => {
+    dispatch(setFollowingProcess(true, userId));
+    if (followed) {
+      usersAPI.unfollow(userId).then((response) => {
+        dispatch(setFollowingProcess(false, userId));
+        if (response.resultCode === 0) {
+          dispatch(followUnfollowSucces(userId));
+        }
+      })
+    } else {
+      usersAPI.follow(userId).then((response) => {
+        dispatch(setFollowingProcess(false, userId));
+        if (response.resultCode === 0) {
+          dispatch(followUnfollowSucces(userId))
+        }
+      })
+    }
+  }
+}
 
 export default findUsersReducer;

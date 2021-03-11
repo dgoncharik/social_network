@@ -9,12 +9,12 @@ const ProfileInfo = (props) => {
 
   const getContactElements = (obj) => {
     const arrLi = [];
-
+    let k = 0;
     for (let [contact, value] of Object.entries(obj)) {
 
       if (value) {
         arrLi.push(
-          <li>
+          <li key={k++}>
             {`${contact}: `} <a target='_blank' href={value}>{value}</a>
           </li>);
       }

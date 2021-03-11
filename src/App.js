@@ -22,7 +22,7 @@ const App = (props) => {
         <div className="app-wrapper-content">
 
           <Route path="/Dialogs"              render={ () => <DialogsContainer /> } />
-          <Route path="/Profile/:userID?"     render={ () => <ProfileContainer />  } />
+          <Route path="/Profile/:userId?"     render={ () => <ProfileContainer />  } />
           <Route path="/News"                 render={ () => <News />     } />
           <Route path="/Music"                render={ () => <Music />    } />
           <Route path="/Settings"             render={ () => <Settings /> } />

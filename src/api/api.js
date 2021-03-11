@@ -24,7 +24,7 @@ export const usersAPI = {
         .then(response => response.data);
   },
 
-  showProfile(userID) {
+  getProfile(userID) {
     return instanseAxios.get(`profile/${userID}`).then(response => response.data);
   }
 }

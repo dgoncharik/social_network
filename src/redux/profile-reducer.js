@@ -1,3 +1,5 @@
+import {usersAPI} from "../api/api";
+
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 const ADD_NEW_POST = "ADD-NEW-POST";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
@@ -52,8 +54,19 @@ const profileReducer = (state=initialState, action) => {
 
 }
 
+// action creators
 export const updateNewPostText = (text) => ({type:UPDATE_NEW_POST_TEXT, newText:text})
 export const addNewPost = () => ({type:ADD_NEW_POST})
 export const setUserProfile = (profile) => ({type:SET_USER_PROFILE, profile})
+
+// thunk creators
+export const showProfile = (userId) => {
+  return (dispatch) => {
+    if (!userId) userId = 15567 // Временно. Мой ID
+    usersAPI.getProfile(userId).then((data) => {
+      dispatch(setUserProfile(data));
+    })
+  }
+}
 
 export default profileReducer;

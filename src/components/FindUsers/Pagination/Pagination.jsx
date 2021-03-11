@@ -16,7 +16,7 @@ const Pagination = (props) => {
         <li className={className} key={page} >
           <button
               onClick={() => {
-                props.onPaginationItemClick(page);
+                props.getUsers(page, props.pageSize);
               }}>
             {page}
           </button>

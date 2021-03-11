@@ -1,12 +1,12 @@
 import css from "./User.module.css"
 import defaultAvatar from "./img/default-avatar.png"
 import {NavLink} from "react-router-dom";
-import {setFollowingProcess} from "../../../redux/FindUsers-reducer";
 
 const User = (props) => {
 
   const onBtnSubscribeClick = () => {
-    props.followUnfollow()
+
+    props.followUnfollow(props.id, props.followed);
   }
 
   const avatarSmall = props.photos.small ? props.photos.small : defaultAvatar;
