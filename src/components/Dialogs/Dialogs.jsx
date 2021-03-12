@@ -6,12 +6,14 @@ import React from 'react';
 const Dialogs = (props) => {
 
   let dialogsElements = props.dialogs.map(dialog => {
-      return <DialogItem
-          key={dialog.id}
-          id={dialog.id}
-          pathAvatar={dialog.pathAvatar}
-          name={dialog.name}
-      />
+      return (
+          <li key={dialog.id}>
+            <DialogItem
+            id={dialog.id}
+            pathAvatar={dialog.pathAvatar}
+            name={dialog.name}
+            />
+          </li>)
     })
 
   let messagesElements = props.messages.map(el => {
@@ -38,7 +40,7 @@ const Dialogs = (props) => {
       <section className={css.dialogs}>
 
         <ul className={css.dialogs__list}>
-          {dialogsElements.map(dialog => <li>{dialog}</li>)}
+          {dialogsElements}
         </ul>
 
         <section className={css.messages}>
