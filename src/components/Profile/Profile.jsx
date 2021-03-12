@@ -8,7 +8,7 @@ const Profile = (props) => {
 
   return (
     <section>
-      <ProfileInfo profile={props.profile} />
+      <ProfileInfo profile={props.profile} status={"Hello, react!!!"}/>
       <MyPostsContainer />
     </section>
   )
