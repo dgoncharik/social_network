@@ -2,6 +2,7 @@ import css from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import React from 'react';
+import SendMessage from "./SendMessage/SendMessage";
 
 const Dialogs = (props) => {
 
@@ -23,18 +24,16 @@ const Dialogs = (props) => {
         myMessage={el.myMessage}/>
   })
 
-  // let sendMessageTextareaElements = React.createRef();
-
-  const updateNewMessageText = (evt) => {
-    // const value = sendMessageTextareaElements.current.value;
-    const value = evt.target.value;
-    props.updateNewMessageText(value);
-
-  }
-
-  const sendNewMessage = (evt) => {
-    props.sendNewMessage();
-  }
+  // const updateNewMessageText = (evt) => {
+  //   // const value = sendMessageTextareaElements.current.value;
+  //   const value = evt.target.value;
+  //   props.updateNewMessageText(value);
+  //
+  // }
+  //
+  // const sendNewMessage = (evt) => {
+  //   props.sendNewMessage();
+  // }
 
   return (
       <section className={css.dialogs}>
@@ -47,11 +46,7 @@ const Dialogs = (props) => {
           {messagesElements}
         </section>
 
-        <div className={css.sendMessage}>
-          <textarea onChange={updateNewMessageText} className={css.sendMessage__textarea} /*ref={sendMessageTextareaElements}*/ name="sendMessage__textarea" cols="30" rows="10" value={props.newMessageText} />
-          <button onClick={sendNewMessage} className={css.sendMessage__button}>Отправить</button>
-        </div>
-
+        <SendMessage sendNewMessage={props.sendNewMessage} />
 
       </section>
   )

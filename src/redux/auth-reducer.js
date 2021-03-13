@@ -30,14 +30,29 @@ export const setAuthUserData = (userID, email, login) => ({type:SET_AUTH_USER_DA
 
 
 // thunk creators
-export const authorization = () => {
+export const authorizeMe = () => {
   return (dispatch) => {
-    authAPI.authorization().then((response) => {
+    authAPI.authorizeMe().then((response) => {
       if (response.resultCode === 0) {
         let {id, login, email} = response.data;
         dispatch(setAuthUserData(id, email, login));
+      } else {
+        alert(`error authorizeMe! resultCode ${response.resultCode}`)
       }
     })
+  }
+}
+
+export const signIn = (email, password, rememberMe) => {
+  return (dispatch) => {
+    authAPI.signIn(email, password, rememberMe)
+        .then(response => {
+          if (response.resultCode === 0) {
+            dispatch(authorizeMe());
+          } else {
+            alert(`error signIn! resultCode ${response.resultCode}`)
+          }
+        })
   }
 }
 

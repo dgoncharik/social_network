@@ -17,40 +17,41 @@ let initialState = {
     {id:5, name:"Витёк",  pathAvatar: picture.five},
     {id:6, name:"Валера", pathAvatar: picture.six}
   ],
-  newMessageText: "",
+  //newMessageText: "",
 };
 
 const dialogsReducer = (state=initialState, action) => {
   switch (action.type) {
 
     case SEND_NEW_MESSEGE: {
-      if (!state.newMessageText) return state;
+      //if (!state.newMessageText) return state;
+      if (!action.newMessage) return state
 
       const newMessage = {
             id: 7,
-            message: state.newMessageText,
+            message: action.newMessage,
             myMessage: true
           };
 
       return {
         ...state,
         messages: [...state.messages, newMessage],
-        newMessageText: ""
+        //newMessageText: ""
       };
     }
-    case UPDATE_NEW_MESSAGE_TEXT: {
-
-      return {
-        ...state,
-        newMessageText: action.newText
-      };
-    }
+    // case UPDATE_NEW_MESSAGE_TEXT: {
+    //
+    //   return {
+    //     ...state,
+    //     newMessageText: action.newText
+    //   };
+    // }
     default:
       return state;
   }
 }
 
-export const updateNewMessageText = (text) => ({type: UPDATE_NEW_MESSAGE_TEXT, newText:text})
-export const sendNewMessage = () => ({type: SEND_NEW_MESSEGE})
+//export const updateNewMessageText = (text) => ({type: UPDATE_NEW_MESSAGE_TEXT, newText:text})
+export const sendNewMessage = (newMessage) => ({type: SEND_NEW_MESSEGE, newMessage})
 
 export default dialogsReducer;

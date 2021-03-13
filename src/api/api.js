@@ -40,7 +40,17 @@ export const profileAPI = {
 }
 
 export const authAPI = {
-  authorization() {
+  authorizeMe() {
     return instanseAxios.get(`auth/me`).then(response => response.data);
+  },
+
+  signIn(email, password, rememberMe) {
+    return instanseAxios.post(`auth/login`,
+      { //body
+        email,
+        password,
+        rememberMe
+      }
+    ).then(response => response.data);
   }
 }
