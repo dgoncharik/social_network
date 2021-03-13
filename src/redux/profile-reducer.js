@@ -1,8 +1,9 @@
-import {usersAPI} from "../api/api";
+import {profileAPI} from "../api/api";
 
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 const ADD_NEW_POST = "ADD-NEW-POST";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
+const SET_STATUS = "SET_STATUS";
 
 let initialState = {
   posts: [
@@ -11,7 +12,8 @@ let initialState = {
     {id:3, message: "Текст номер 3", likesCount:10}
   ],
   newPostText: "",
-  profile: null
+  profile: null,
+  status: ""
 };
 
 const profileReducer = (state=initialState, action) => {
@@ -48,6 +50,12 @@ const profileReducer = (state=initialState, action) => {
       }
     }
 
+    case SET_STATUS:
+      return {
+        ...state,
+        status: action.status
+      }
+
     default:
       return state;
   }
@@ -58,14 +66,34 @@ const profileReducer = (state=initialState, action) => {
 export const updateNewPostText = (text) => ({type:UPDATE_NEW_POST_TEXT, newText:text})
 export const addNewPost = () => ({type:ADD_NEW_POST})
 export const setUserProfile = (profile) => ({type:SET_USER_PROFILE, profile})
+export const setStatus = (status) => ({type:SET_STATUS, status})
 
 // thunk creators
 export const showProfile = (userId) => {
   return (dispatch) => {
-    if (!userId) userId = 15567 // Временно. Мой ID
-    usersAPI.getProfile(userId).then((data) => {
+    profileAPI.getProfile(userId).then((data) => {
       dispatch(setUserProfile(data));
     })
+  }
+}
+
+export const getUserStatus = (userId) => {
+  return (dispath) => {
+    profileAPI.getUserStatus(userId)
+        .then(response => {
+          dispath(setStatus(response))
+        })
+  }
+}
+
+export const updateUserStatus = (status) => {
+  return (dispatch) => {
+    profileAPI.updateUserStatus(status)
+        .then(response => {
+          if (response.resultCode === 0) {
+            dispatch(setStatus(status));
+          }
+        })
   }
 }
 

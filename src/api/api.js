@@ -22,10 +22,20 @@ export const usersAPI = {
   unfollow(userId) {
     return instanseAxios.delete(`follow/${userId}`)
         .then(response => response.data);
-  },
+  }
+}
 
+export const profileAPI = {
   getProfile(userID) {
     return instanseAxios.get(`profile/${userID}`).then(response => response.data);
+  },
+
+  getUserStatus(userId) {
+    return instanseAxios.get(`/profile/status/${userId}`).then(response => response.data);
+  },
+
+  updateUserStatus(status) {
+    return instanseAxios.put(`profile/status/`, {status}).then(response => response.data);
   }
 }
 

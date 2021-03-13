@@ -1,6 +1,7 @@
 import css from "./ProfileInfo.module.css"
 import Preloader from "../../Common/Preoader/Preloader";
 import ProfileStatus from "./ProfileStatus/ProfileStatus";
+import {updateUserStatus} from "../../../redux/profile-reducer";
 
 const ProfileInfo = (props) => {
 
@@ -29,7 +30,7 @@ const ProfileInfo = (props) => {
         {/*  <img src="https://cdn.searchenginejournal.com/wp-content/uploads/2019/08/c573bf41-6a7c-4927-845c-4ca0260aad6b-760x400.jpeg"/>*/}
         {/*</div>*/}
 
-        <ProfileStatus status={props.status}/>
+        <ProfileStatus status={props.status} updateUserStatus={props.updateUserStatus}/>
 
         <div className={css.profileInfo__description}>
           <img className={css.avatar} src={props.profile.photos.large}/>
