@@ -1,11 +1,13 @@
-import MyPosts from './MyPosts/MyPosts';
 import css from './Profile.module.css';
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
-import {Redirect} from "react-router-dom";
-import {updateUserStatus} from "../../redux/profile-reducer";
+import Preloader from "../Common/Preoader/Preloader";
 
 const Profile = (props) => {
+
+  if (props.profile === null) {
+    return <Preloader/>
+  }
 
   return (
     <section>

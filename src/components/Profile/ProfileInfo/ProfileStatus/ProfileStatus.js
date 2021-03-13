@@ -22,15 +22,21 @@ class ProfileStatus extends React.Component {
   onBlurInput = () => {
     this.setEditMode(false);
     if (this.state.status) {
-      console.log("updateUserStatus...");
       this.props.updateUserStatus(this.state.status);
     }
   }
 
+  componentDidUpdate = (prevProps, prevState, snapshot) => {
+
+    if (this.props.status !== prevProps.status) {
+      this.setState({
+        status: this.props.status
+      })
+    }
+
+  }
+
   render() {
-    console.log("render status component");
-    console.log(`props - ${this.props.status}`);
-    console.log(`Lstate - ${this.state.status}`);
 
     return (
         this.state.editMode ?

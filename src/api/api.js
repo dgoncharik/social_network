@@ -26,8 +26,8 @@ export const usersAPI = {
 }
 
 export const profileAPI = {
-  getProfile(userID) {
-    return instanseAxios.get(`profile/${userID}`).then(response => response.data);
+  getProfile(userId) {
+    return instanseAxios.get(`profile/${userId}`).then(response => response.data);
   },
 
   getUserStatus(userId) {

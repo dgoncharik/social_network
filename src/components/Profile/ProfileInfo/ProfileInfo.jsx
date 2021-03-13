@@ -1,13 +1,8 @@
 import css from "./ProfileInfo.module.css"
-import Preloader from "../../Common/Preoader/Preloader";
 import ProfileStatus from "./ProfileStatus/ProfileStatus";
 import {updateUserStatus} from "../../../redux/profile-reducer";
 
 const ProfileInfo = (props) => {
-
-  if (props.profile === null) {
-    return <Preloader/>
-  }
 
   const getContactElements = (obj) => {
     const arrLi = [];
