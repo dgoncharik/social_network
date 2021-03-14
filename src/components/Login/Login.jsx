@@ -1,6 +1,8 @@
 import { Form, Field } from 'react-final-form'
 import {signIn} from "../../redux/auth-reducer";
 import {connect} from "react-redux";
+import {Input} from "../Common/CustomFormElements/CustomFormElements";
+import {composeValidators, required} from "../../utils/validators/validators";
 
 const LoginForm = (props) => {
 
@@ -8,17 +10,17 @@ const LoginForm = (props) => {
       <form onSubmit={props.handleSubmit}>
         <p>
           <label htmlFor={"login"}>Логин</label>
-          <Field id={"login"} name="login" component="input" placeholder="Логин" />
+          <Field id={"login"} name="login" component={Input} placeholder="Логин" validate={composeValidators(required)} />
         </p>
 
         <p>
           <label htmlFor={"password"}>Пароль</label>
-          <Field id={"password"} type={"password"} name="password" component="input" placeholder="Пароль" />
+          <Field id={"password"} type={"password"} name="password" component={Input} placeholder="Пароль" validate={composeValidators(required)} />
         </p>
 
         <p>
           <label htmlFor={"rememberMe"}>Запомнить меня</label>
-          <Field id={"rememberMe"} type={"checkbox"} name="rememberMe" component="input" placeholder="" />
+          <Field id={"rememberMe"} type={"checkbox"} name="rememberMe" component={Input} placeholder="" />
         </p>
 
         <p>

@@ -10,5 +10,10 @@
 }
 
 .newPost__text {
-    margin-bottom: 5px;
+
+}
+
+.newPost__btnAdd {
+    /*display: block;*/
+    margin-top: 5px;
 }

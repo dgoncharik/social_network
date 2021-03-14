@@ -1,0 +1,18 @@
+.elementWrapper {
+
+}
+
+.element {
+
+}
+
+.element.error {
+    border: 2px solid red;
+    border-radius: 4px;
+}
+
+.errorMessage {
+    display: block;
+    color: red;
+    font-weight: bold;
+}

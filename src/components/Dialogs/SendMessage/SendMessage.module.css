@@ -18,10 +18,10 @@
     width: 100%;
     resize: none;
     box-sizing: border-box;
-    margin-bottom: 10px;
 }
 
 .sendMessage__button {
     min-width: 150px;
     padding: 5px;
+    margin-top: 10px;
 }

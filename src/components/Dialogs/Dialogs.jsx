@@ -24,17 +24,6 @@ const Dialogs = (props) => {
         myMessage={el.myMessage}/>
   })
 
-  // const updateNewMessageText = (evt) => {
-  //   // const value = sendMessageTextareaElements.current.value;
-  //   const value = evt.target.value;
-  //   props.updateNewMessageText(value);
-  //
-  // }
-  //
-  // const sendNewMessage = (evt) => {
-  //   props.sendNewMessage();
-  // }
-
   return (
       <section className={css.dialogs}>
 
