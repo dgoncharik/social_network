@@ -1,6 +1,5 @@
 import css from "./ProfileInfo.module.css"
 import ProfileStatus from "./ProfileStatus/ProfileStatus";
-import {updateUserStatus} from "../../../redux/profile-reducer";
 
 const ProfileInfo = (props) => {
 

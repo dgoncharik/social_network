@@ -32,3 +32,7 @@
   color: black;
   font-size: 15px;
 }
+
+.login__userName {
+  margin-right: 10px;
+}

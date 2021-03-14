@@ -1,9 +1,10 @@
 import {authAPI} from "../api/api";
+import {FORM_ERROR} from "final-form";
 
 const SET_AUTH_USER_DATA = "SET_AUTH_USER_DATA";
 
 const initialState = {
-  userID: null,
+  userId: null,
   email:  null,
   login:  null,
   isFetching: false,
@@ -15,8 +16,7 @@ const authReducer = (state=initialState, action) => {
     case(SET_AUTH_USER_DATA):
       return {
         ...state,
-        ...action.data,
-        isAuth: true
+        ...action.payload
       };
 
     default:
@@ -25,19 +25,17 @@ const authReducer = (state=initialState, action) => {
 }
 
 // action creators
-export const setAuthUserData = (userID, email, login) => ({type:SET_AUTH_USER_DATA, data: {userID, email, login}});
-
-
+export const setAuthUserData = (userId, email, login, isAuth) => ({type:SET_AUTH_USER_DATA, payload: {userId, email, login, isAuth}});
 
 // thunk creators
 export const authorizeMe = () => {
   return (dispatch) => {
-    authAPI.authorizeMe().then((response) => {
+    return authAPI.authorizeMe().then((response) => {
       if (response.resultCode === 0) {
         let {id, login, email} = response.data;
-        dispatch(setAuthUserData(id, email, login));
+        dispatch(setAuthUserData(id, email, login, true));
       } else {
-        alert(`error authorizeMe! resultCode ${response.resultCode}`)
+        //alert(`error authorizeMe!\n${response.messages}\nresultCode ${response.resultCode}`)
       }
     })
   }
@@ -45,12 +43,25 @@ export const authorizeMe = () => {
 
 export const signIn = (email, password, rememberMe) => {
   return (dispatch) => {
-    authAPI.signIn(email, password, rememberMe)
+     return authAPI.signIn(email, password, rememberMe)
         .then(response => {
+
           if (response.resultCode === 0) {
             dispatch(authorizeMe());
           } else {
-            alert(`error signIn! resultCode ${response.resultCode}`)
+            return { [FORM_ERROR]: response.messages }
+            // alert(`error signIn!\n${response.messages}\nresultCode ${response.resultCode}`)
+          }
+        })
+  }
+}
+
+export const signOut = () => {
+  return (dispatch) => {
+    authAPI.signOut()
+        .then(response => {
+          if (response.resultCode === 0) {
+            dispatch(setAuthUserData(null, null, null, false));
           }
         })
   }

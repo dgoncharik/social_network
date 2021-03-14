@@ -2,15 +2,16 @@ import { Form, Field } from 'react-final-form'
 import {signIn} from "../../redux/auth-reducer";
 import {connect} from "react-redux";
 import {Input} from "../Common/CustomFormElements/CustomFormElements";
-import {composeValidators, required} from "../../utils/validators/validators";
+import {composeValidators, required, serverReportedAnError} from "../../utils/validators/validators";
+import {Redirect} from "react-router-dom";
 
-const LoginForm = (props) => {
+const LoginForm = ({submitError, handleSubmit}) => {
 
   return (
-      <form onSubmit={props.handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <p>
           <label htmlFor={"login"}>Логин</label>
-          <Field id={"login"} name="login" component={Input} placeholder="Логин" validate={composeValidators(required)} />
+          <Field id={"login"} name="email" component={Input} placeholder="Логин" validate={composeValidators(required)} />
         </p>
 
         <p>
@@ -23,6 +24,10 @@ const LoginForm = (props) => {
           <Field id={"rememberMe"} type={"checkbox"} name="rememberMe" component={Input} placeholder="" />
         </p>
 
+        <p style={{color:"red", fontWeight: "bold"}}>
+          {submitError}
+        </p>
+
         <p>
           <button type="submit">Войти</button>
         </p>
@@ -33,8 +38,12 @@ const LoginForm = (props) => {
 
 const Login = (props) => {
 
-  const onSubmit = (formData) => {
-    props.signIn(formData.login, formData.password, formData.rememberMe);
+  const onSubmit = async (formData) => {
+   return props.signIn(formData.email, formData.password, formData.rememberMe);
+  }
+
+  if (props.isAuth) {
+    return <Redirect to={"/profile"}/>
   }
 
   return (
@@ -50,4 +59,20 @@ const Login = (props) => {
   )
 }
 
-export default connect(null, {signIn})(Login);
+const mapStateToProps = (state) => {
+  return {
+    isAuth: state.auth.isAuth
+  }
+}
+
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     signIn: () => {
+//       dispatch(signIn())
+//     }
+//   }
+// }
+
+
+
+export default connect(mapStateToProps, {signIn})(Login);

@@ -44,7 +44,7 @@ export const authAPI = {
     return instanseAxios.get(`auth/me`).then(response => response.data);
   },
 
-  signIn(email, password, rememberMe) {
+  signIn(email, password, rememberMe= false) {
     return instanseAxios.post(`auth/login`,
       { //body
         email,
@@ -52,5 +52,9 @@ export const authAPI = {
         rememberMe
       }
     ).then(response => response.data);
+  },
+
+  signOut() {
+    return instanseAxios.delete(`auth/login`).then(response => response.data)
   }
 }
