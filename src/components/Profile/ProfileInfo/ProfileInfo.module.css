@@ -9,3 +9,11 @@
 .profileInfo__description {
     padding: 10px;
 }
+
+.avatarWrapper {
+    width: 250px;
+}
+
+.avatar {
+    max-width: 100%;
+}

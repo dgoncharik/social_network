@@ -1,5 +1,5 @@
 import css from "./User.module.css"
-import defaultAvatar from "./img/default-avatar.png"
+import defaultAvatar from "../../../img/default-avatar.png"
 import {NavLink} from "react-router-dom";
 
 const User = (props) => {

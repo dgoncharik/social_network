@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from "react-redux";
 import FindUsers from "./FindUsers";
 import {
-  changeCurrentPage, getUsers, setFollowingProcess,
+  changeCurrentPage, requestUsers, setFollowingProcess,
   followUnfollow
 } from "../../redux/FindUsers-reducer";
 import Preloader from "../Common/Preoader/Preloader";
@@ -44,5 +44,5 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps,
                       {changeCurrentPage,
-                        setFollowingProcess, getUsers, followUnfollow})(FindUsersContainer);
+                        setFollowingProcess, getUsers: requestUsers, followUnfollow})(FindUsersContainer);
 

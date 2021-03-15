@@ -75,13 +75,14 @@ export const toogleIsFetching = (isFetching) => ({type: TOOGLE_IS_FETCHING, isFe
 export const setFollowingProcess = (isProcess, userId) => ({type: FOLLOWING_PROCESS, isProcess, userId});
 
 // thunk creators
-export const getUsers = (currentPage, pageSize) => {
+export const requestUsers = (page, pageSize) => {
   return (dispatch) => {
     dispatch(toogleIsFetching(true));
-    usersAPI.getUsers(currentPage, pageSize).then((response) => {
+    usersAPI.getUsers(page, pageSize).then((response) => {
       dispatch(setUsers(response.items));
       dispatch(setTotalUsersCount(response.totalCount));
       dispatch(toogleIsFetching(false));
+      dispatch(changeCurrentPage(page));
     });
   }
 }
@@ -94,7 +95,7 @@ export const followUnfollow = (userId, followed) => {
       usersAPI.unfollow(userId).then((response) => {
         dispatch(setFollowingProcess(false, userId));
         if (response.resultCode === 0) {
-          dispatch(followUnfollowSucces(userId));
+          dispatch(followUnfollowSucces(userId))
         }
       })
     } else {

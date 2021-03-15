@@ -1,5 +1,6 @@
 import css from "./ProfileInfo.module.css"
 import ProfileStatus from "./ProfileStatus/ProfileStatus";
+import defaultAvatar from "../../../../src/img/default-avatar.png"
 
 const ProfileInfo = (props) => {
 
@@ -27,7 +28,9 @@ const ProfileInfo = (props) => {
         <ProfileStatus status={props.status} updateUserStatus={props.updateUserStatus}/>
 
         <div className={css.profileInfo__description}>
-          <img className={css.avatar} src={props.profile.photos.large}/>
+          <div className={css.avatarWrapper}>
+            <img className={css.avatar} src={props.profile.photos.large || defaultAvatar}/>
+          </div>
           <p>
             {'Имя: ' + props.profile.fullName}
           </p>
