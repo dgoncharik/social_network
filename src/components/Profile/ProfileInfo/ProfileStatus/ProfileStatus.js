@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 // class ProfileStatus1 extends React.Component {
 //
@@ -74,6 +74,10 @@ const ProfileStatus = (props) => {
   const onChangeInput = (evt) => {
     setStatus(evt.target.value);
   }
+
+  useEffect(() => {
+    setStatus(props.status);
+  }, [props.status])
 
   return (
       editMode ?
