@@ -1,3 +1,4 @@
+import React from "react";
 import logo from './logo.svg';
 import './App.css';
 import {Route} from "react-router-dom";
@@ -10,12 +11,12 @@ import FindUsersContainer from "./components/FindUsers/FindUsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
-import {Component} from "react";
+
 import {connect} from "react-redux";
 import {initializeApp} from "./redux/app-reducer";
 import PreloaderKitKat from "./components/Common/PreloaderKitKat/PreloaderKitKat";
 
-class App extends Component {
+class App extends React.Component {
 
   componentDidMount() {
     this.props.initializeApp()
