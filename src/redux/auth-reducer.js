@@ -1,7 +1,7 @@
 import {authAPI} from "../api/api";
 import {FORM_ERROR} from "final-form";
 
-const SET_AUTH_USER_DATA = "SET_AUTH_USER_DATA";
+const SET_AUTH_USER_DATA = "auth/SET_AUTH_USER_DATA";
 
 const initialState = {
   userId: null,
@@ -28,16 +28,29 @@ const authReducer = (state=initialState, action) => {
 export const setAuthUserData = (userId, email, login, isAuth) => ({type:SET_AUTH_USER_DATA, payload: {userId, email, login, isAuth}});
 
 // thunk creators
+// export const authorizeMe = () => {
+//   return  (dispatch) => {
+//     return authAPI.authorizeMe().then((response) => {
+//       if (response.resultCode === 0) {
+//         let {id, login, email} = response.data;
+//         dispatch(setAuthUserData(id, email, login, true));
+//       } else {
+//         //alert(`error authorizeMe!\n${response.messages}\nresultCode ${response.resultCode}`)
+//       }
+//     })
+//   }
+// }
+
 export const authorizeMe = () => {
-  return (dispatch) => {
-    return authAPI.authorizeMe().then((response) => {
-      if (response.resultCode === 0) {
-        let {id, login, email} = response.data;
-        dispatch(setAuthUserData(id, email, login, true));
-      } else {
-        //alert(`error authorizeMe!\n${response.messages}\nresultCode ${response.resultCode}`)
-      }
-    })
+  return async (dispatch) => {
+    let response = await authAPI.authorizeMe();
+
+    if (response.resultCode === 0) {
+      let {id, login, email} = response.data;
+      dispatch(setAuthUserData(id, email, login, true));
+    } else {
+      //alert(`error authorizeMe!\n${response.messages}\nresultCode ${response.resultCode}`)
+    }
   }
 }
 

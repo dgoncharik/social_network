@@ -12,7 +12,6 @@ const MyPosts = (props) => {
     />
   })
 
-
   return (
     <div className={css.myPost}>
       <h3>My post</h3>

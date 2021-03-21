@@ -6,3 +6,32 @@
     margin-right: 10px;
     margin-top: 10px;
 }
+
+.pagination {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+}
+
+.paginationItem {
+    font-size: 18px;
+    margin: 0px 1px;
+    /*transition: transform .2s;*/
+}
+
+.paginationItem:hover {
+    background-color: white;
+}
+
+.paginationItem__active {
+    font-weight: bold;
+}
+
+.paginationItem__link {
+    text-decoration: none;
+    display: block;
+    color: black;
+    border: 1px solid black;
+    padding: 0px 4px;
+}

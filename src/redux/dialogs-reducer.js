@@ -1,6 +1,6 @@
 import {picture} from "./Picture";
 
-const SEND_NEW_MESSEGE = "SEND-NEW-MESSEGE";
+const SEND_NEW_MESSEGE = "dialogs/SEND-NEW-MESSEGE";
 
 let initialState = {
   messages: [

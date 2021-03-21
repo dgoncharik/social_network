@@ -1,11 +1,11 @@
 import {usersAPI} from "../api/api";
 
-const FOLLOW_UNFOLLOW_SUCCES  = "FOLLOW_UNFOLLOW_SUCCES";
-const SET_USERS               = "SET_USERS";
-const CHANGE_CURRENT_PAGE     = "CHANGE_CURRENT_PAGE";
-const SET_TOTAL_USERS_COUNT   = "SET_TOTAL_USERS_COUNT";
-const TOOGLE_IS_FETCHING      = "TOOGLE_IS_FETCHING";
-const FOLLOWING_PROCESS       = "FOLLOWING_PROCESS";
+const FOLLOW_UNFOLLOW_SUCCES  = "findUsers/FOLLOW_UNFOLLOW_SUCCES";
+const SET_USERS               = "findUsers/SET_USERS";
+const CHANGE_CURRENT_PAGE     = "findUsers/CHANGE_CURRENT_PAGE";
+const SET_TOTAL_USERS_COUNT   = "findUsers/SET_TOTAL_USERS_COUNT";
+const TOOGLE_IS_FETCHING      = "findUsers/TOOGLE_IS_FETCHING";
+const FOLLOWING_PROCESS       = "findUsers/FOLLOWING_PROCESS";
 
 let initalState = {
   users: [],
@@ -89,22 +89,20 @@ export const requestUsers = (page, pageSize) => {
 
 export const followUnfollow = (userId, followed) => {
 
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch(setFollowingProcess(true, userId));
     if (followed) {
-      usersAPI.unfollow(userId).then((response) => {
-        dispatch(setFollowingProcess(false, userId));
-        if (response.resultCode === 0) {
-          dispatch(followUnfollowSucces(userId))
-        }
-      })
+      const response = await usersAPI.unfollow(userId);
+      dispatch(setFollowingProcess(false, userId));
+      if (response.resultCode === 0) {
+        dispatch(followUnfollowSucces(userId))
+      }
     } else {
-      usersAPI.follow(userId).then((response) => {
+        const response = await usersAPI.follow(userId);
         dispatch(setFollowingProcess(false, userId));
         if (response.resultCode === 0) {
           dispatch(followUnfollowSucces(userId))
         }
-      })
     }
   }
 }
