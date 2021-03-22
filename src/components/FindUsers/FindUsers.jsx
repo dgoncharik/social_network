@@ -6,7 +6,7 @@ import Pagination from "react-js-pagination";
 
 const FindUsers = (props) => {
 
-    const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+    //const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
 
     const handlePageClick = (page) => {
       props.getUsers(page, props.pageSize);
@@ -41,10 +41,10 @@ const FindUsers = (props) => {
           <Pagination
               activePage={props.currentPage}
               itemsCountPerPage={10}
-              totalItemsCount={pagesCount}
+              totalItemsCount={props.totalUsersCount}
               pageRangeDisplayed={10}
-              hideNavigation={pagesCount < 1}
-              hideFirstLastPages={pagesCount < 1}
+              hideNavigation={props.totalUsersCount < 1}
+              hideFirstLastPages={props.totalUsersCount < 1}
               onChange={handlePageClick}
               innerClass={css.pagination}
               activeClass={css.paginationItem__active}
