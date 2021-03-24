@@ -2,7 +2,7 @@ import { Form, Field } from 'react-final-form'
 import {signIn} from "../../redux/auth-reducer";
 import {connect} from "react-redux";
 import {Input} from "../Common/CustomFormElements/CustomFormElements";
-import {composeValidators, required, serverReportedAnError} from "../../utils/validators/validators";
+import {composeValidators, required} from "../../utils/validators/validators";
 import {Redirect} from "react-router-dom";
 
 const LoginForm = ({submitError, handleSubmit}) => {

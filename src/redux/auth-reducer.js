@@ -63,7 +63,6 @@ export const signIn = (email, password, rememberMe) => {
             dispatch(authorizeMe());
           } else {
             return { [FORM_ERROR]: response.messages }
-            // alert(`error signIn!\n${response.messages}\nresultCode ${response.resultCode}`)
           }
         })
   }

@@ -2,6 +2,7 @@ import css from './Profile.module.css';
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import Preloader from "../Common/Preoader/Preloader";
+import {saveProfileData} from "../../redux/profile-reducer";
 
 const Profile = (props) => {
 
@@ -13,7 +14,11 @@ const Profile = (props) => {
     <section>
       <ProfileInfo profile={props.profile}
                    status={props.status}
-                   updateUserStatus={props.updateUserStatus}/>
+                   updateUserStatus={props.updateUserStatus}
+                   isOwner={props.isOwner}
+                   setAvatar={props.setAvatar}
+                   saveProfileData={props.saveProfileData}
+      />
       <MyPostsContainer />
     </section>
   )

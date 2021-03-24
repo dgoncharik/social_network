@@ -31,25 +31,26 @@ class App extends React.Component {
     }
 
     return (
-        <Suspense fallback={<PreloaderKitKat/>}>
           <div className="app-wrapper">
 
             <HeaderContainer/>
             <NavbarContainer/>
 
             <div className="app-wrapper-content">
+              <Suspense fallback={<PreloaderKitKat/>}>
 
-              <Route path="/Dialogs" render={() => <DialogsContainer />}/>
-              <Route path="/Profile/:userId?" render={() => <ProfileContainer/>}/>
-              <Route path="/News" render={() => <News/>}/>
-              <Route path="/Music" render={() => <Music/>}/>
-              <Route path="/Settings" render={() => <Settings/>}/>
-              <Route path="/FindUsers" render={() => <FindUsersContainer/>}/>
-              <Route path="/login" render={() => <Login/>}/>
+                <Route path="/Dialogs" render={() => <DialogsContainer />}/>
+                <Route path="/Profile/:userId?" render={() => <ProfileContainer/>}/>
+                <Route path="/News" render={() => <News/>}/>
+                <Route path="/Music" render={() => <Music/>}/>
+                <Route path="/Settings" render={() => <Settings/>}/>
+                <Route path="/FindUsers" render={() => <FindUsersContainer/>}/>
+                <Route path="/login" render={() => <Login/>}/>
 
+              </Suspense>
             </div>
           </div>
-        </Suspense>
+
     );
   }
 }
@@ -64,7 +65,7 @@ const AppWithConnect = connect(mapStateToProps, {initializeApp})(App)
 
 const AppContainer = (props) => {
   return (
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL} >
         <Provider store={store}>
           <AppWithConnect />
         </Provider>

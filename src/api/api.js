@@ -36,6 +36,18 @@ export const profileAPI = {
 
   updateUserStatus(status) {
     return instanseAxios.put(`profile/status/`, {status}).then(response => response.data);
+  },
+
+  saveAvatar(imgFile) {
+    const formdData = new FormData();
+    formdData.append("image", imgFile)
+    return instanseAxios.put(`profile/photo/`, formdData, {
+      'Content-Type': 'multipart/form-data'
+    }).then(response => response.data);
+  },
+
+  saveProfile(profileObj) {
+    return instanseAxios.put(`profile`, profileObj).then(response => response.data);
   }
 }
 

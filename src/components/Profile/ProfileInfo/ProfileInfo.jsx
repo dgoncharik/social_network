@@ -1,53 +1,33 @@
 import css from "./ProfileInfo.module.css"
 import ProfileStatus from "./ProfileStatus/ProfileStatus";
-import defaultAvatar from "../../../../src/img/default-avatar.png"
+import ProfileData from "./ProfileData/ProfileData";
+import ProfileAvatar from "./ProfileAvatar/ProfileAvatar";
 
 const ProfileInfo = (props) => {
 
-  const getContactElements = (obj) => {
-    const arrLi = [];
-    let k = 0;
-    for (let [contact, value] of Object.entries(obj)) {
-
-      if (value) {
-        arrLi.push(
-          <li key={k++}>
-            {`${contact}: `} <a target='_blank' href={value}>{value}</a>
-          </li>);
-      }
-    }
-    return arrLi;
-  }
-
   return (
       <section className={css.profileInfo}>
-        {/*<div className={css.profileInfo__img}>*/}
-        {/*  <img src="https://cdn.searchenginejournal.com/wp-content/uploads/2019/08/c573bf41-6a7c-4927-845c-4ca0260aad6b-760x400.jpeg"/>*/}
-        {/*</div>*/}
+        <ProfileStatus
+            isOwner={props.isOwner}
+            status={props.status}
+            updateUserStatus={props.updateUserStatus}
+        />
 
-        <ProfileStatus status={props.status} updateUserStatus={props.updateUserStatus}/>
+        <ProfileAvatar
+            isOwner={props.isOwner}
+            photos={props.profile.photos}
+            setAvatar={props.setAvatar}
+        />
 
-        <div className={css.profileInfo__description}>
-          <div className={css.avatarWrapper}>
-            <img className={css.avatar} src={props.profile.photos.large || defaultAvatar}/>
-          </div>
-          <p>
-            {'Имя: ' + props.profile.fullName}
-          </p>
-          <p>
-            {'Ищу работу: ' +  (props.profile.lookingForAJob ? 'Да' : 'Нет')}
-          </p>
-          <p>
-            {'Описание о работе: ' + props.profile.lookingForAJobDescription}
-          </p>
-
-          <ul>
-            Контакты: <br/>
-            {getContactElements(props.profile.contacts)}
-          </ul>
-        </div>
+       <ProfileData
+           profile={props.profile}
+           isOwner={props.isOwner}
+           saveProfileData={props.saveProfileData}
+       />
       </section>
-  )
+    )
 }
+
+
 
 export default ProfileInfo

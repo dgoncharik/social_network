@@ -1,0 +1,11 @@
+.profileData {
+    padding: 10px;
+}
+
+.profileDataForm label {
+    display: block;
+}
+
+.profileDataForm label.inline {
+    display: inline;
+}
